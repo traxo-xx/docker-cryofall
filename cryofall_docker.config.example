@@ -1,0 +1,20 @@
+### Only modify this if you want to run the container in a specific Docker network
+docker_net=
+### Only modify this if you want to run the container with a specific IP in the Docker network
+docker_ip=
+### The host port that should be mapped to the container's UDP port 6000
+docker_port=6000
+### Change this if you want to use a different docker image, e.g. if you've built your own image
+docker_repo=rassilon/cryofall
+### Change this if you want to use a different image tag
+docker_tag=latest
+### The name the docker container will be given
+docker_name=cryofall_server
+### The name the tmux session will be given
+tmux_session=croyfall_server
+### The path you want to mount as /CryoFall/Data in the container
+data_volume=${HOME}/cryofall/data
+### The IP socat will bind to. Only change this if you know what you're doing.
+command_ip=127.0.0.1
+### The port socat will bind to. Only change this if you know what you're doing.
+command_port=7977
