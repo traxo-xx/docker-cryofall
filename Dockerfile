@@ -5,7 +5,7 @@ RUN wget "https://atomictorch.com/Files/${SERVERFILE}.zip" && \
 
 FROM mcr.microsoft.com/dotnet/core/runtime:2.1
 ARG SERVERFILE=CryoFall_Server_v0.21.0.15_NetCore
-ENV USER=cryofall USER_ID=65534 USER_GID=65534
+ENV USER=cryofall USER_ID=999 USER_GID=999
 RUN mkdir /CryoFall
 COPY --from=0 /${SERVERFILE}/ /CryoFall/
 
