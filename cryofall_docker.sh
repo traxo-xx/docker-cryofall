@@ -30,17 +30,20 @@ stop_server() {
 }
 
 init_server() {
-    if [[ -f "${data_volume}/SettingsServer.xml" ]]; then
-        echo "The server has already been initialized. Please run \"$0 start\" to start the server."
-    else
-        if [[ ! -d "${data_volume}" ]];then
-            mkdir -p ${data_volume}
-        fi
-        echo "Creating CryoFall Server..."
-        tmux new -d -s ${tmux_session} "socat EXEC:\"docker run -it ${docker_net_param} ${docker_ip_param} -p ${docker_port}\:6000/udp -v ${data_volume}\:/CryoFall/Data --name ${docker_name} ${docker_repo}\:${docker_tag}\",pty TCP-LISTEN:${command_port},bind=${command_ip},fork"
-        sleep 10
-        docker ps | grep "${docker_name}" > /dev/null 2>&1 && stop_server || echo "Error: Server couldn't be created."
+    if [[ ! -d "${data_volume}" ]];then
+        mkdir -p ${data_volume}
     fi
+    echo "Creating/Updating CryoFall Server..."
+    docker pull ${docker_repo}:${docker_tag}
+    docker rm ${docker_name} > /dev/null 2>&1
+    tmux new -d -s ${tmux_session} "socat EXEC:\"docker run -it ${docker_net_param} ${docker_ip_param} -p ${docker_port}\:6000/udp -v ${data_volume}\:/CryoFall/Data --name ${docker_name} ${docker_repo}\:${docker_tag}\",pty TCP-LISTEN:${command_port},bind=${command_ip},fork"
+    sleep 30
+    docker ps | grep "${docker_name}" > /dev/null 2>&1 && stop_server > /dev/null 2>&1 && echo "Server has been created/updated" || echo "Error: Server couldn't be created/updated."
+}
+
+update_server() {
+    docker pull ${docker_repo}\:${docker_tag}
+
 }
 
 server_logs() {
@@ -52,8 +55,9 @@ case "$1" in
     start)   start_server ;;
     stop)    stop_server ;;
     restart) stop_server; start_server ;;
+    update)  stop_server; init_server; start_server ;;
     logs)    server_logs ;;
-    *) echo "usage: $0 init|start|stop|restart|logs" >&2
+    *) echo "usage: $0 init|start|stop|restart|update|logs" >&2
        exit 1
        ;;
 esac
