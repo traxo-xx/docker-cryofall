@@ -16,7 +16,7 @@ git clone https://github.com/traxo-xx/docker-cryofall ${HOME}/docker-cryofall
 cd ${HOME}/docker-cryofall
 cp cryofall_docker.config.example cryofall_docker.config
 ```
-Modify the config file `cryofall_docker.config` if needed. Then run `./cryofall_docker.sh init`. This should have created the initial server files in `${HOME}/docker-cryofall/data`. 
+Modify the config file `cryofall_docker.config` if needed. Then run `./cryofall_docker.sh init`. This should create the initial server files in `${HOME}/docker-cryofall/data`. 
 
 For specific information regarding the server configuration, please have a look at the official CryoFall wiki: http://wiki.atomictorch.com/CryoFall/Server/Setup
 
@@ -47,4 +47,5 @@ Update the server:
 
 
 **Docker Hub**
+
 You can find the image at https://hub.docker.com/r/rassilon/cryofall
