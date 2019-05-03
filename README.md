@@ -13,11 +13,10 @@ You need to have `netcat`, `socat` and `tmux` installed.
 
 ```
 git clone git@github.com:traxo-xx/docker-cryofall.git ${HOME}/docker-cryofall
-mkdir ${HOME}/docker-cryofall/data
 cd ${HOME}/docker-cryofall
 cp cryofall_docker.config.example cryofall_docker.config
 ```
-Modify the config file `cryofall_docker.config` if needed. Then run `./cryofall_docker.sh start`, wait a bit and then run `./cryofall_docker.sh stop`. This should have created the initial server files in `${HOME}/docker-cryofall/data`. 
+Modify the config file `cryofall_docker.config` if needed. Then run `./cryofall_docker.sh init`. This should have created the initial server files in `${HOME}/docker-cryofall/data`. 
 
 For specific information regarding the server configuration, please have a look at the official CryoFall wiki: http://wiki.atomictorch.com/CryoFall/Server/Setup
 
