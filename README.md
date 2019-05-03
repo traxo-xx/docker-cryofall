@@ -12,7 +12,7 @@ You need to have `netcat`, `socat` and `tmux` installed.
 **Installation**
 
 ```
-git clone git@github.com:traxo-xx/docker-cryofall.git ${HOME}/docker-cryofall
+git clone https://github.com/traxo-xx/docker-cryofall ${HOME}/docker-cryofall
 cd ${HOME}/docker-cryofall
 cp cryofall_docker.config.example cryofall_docker.config
 ```
