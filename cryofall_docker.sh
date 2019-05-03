@@ -36,7 +36,7 @@ init_server() {
     echo "Creating/Updating CryoFall Server..."
     docker pull ${docker_repo}:${docker_tag}
     docker rm ${docker_name} > /dev/null 2>&1
-    tmux new -d -s ${tmux_session} "socat EXEC:\"docker run -it ${docker_net_param} ${docker_ip_param} -p ${docker_port}\:6000/udp -v ${data_volume}\:/CryoFall/Data --name ${docker_name} ${docker_repo}\:${docker_tag}\",pty TCP-LISTEN:${command_port},bind=${command_ip},fork"
+    tmux new -d -s ${tmux_session} "socat EXEC:\"docker run -it ${docker_net_param} ${docker_ip_param} -e HOST_USER_ID=${host_user_id} -e HOST_USER_GID=${host_user_gid} -p ${docker_port}\:6000/udp -v ${data_volume}\:/CryoFall/Data --name ${docker_name} ${docker_repo}\:${docker_tag}\",pty TCP-LISTEN:${command_port},bind=${command_ip},fork"
     sleep 30
     docker ps | grep "${docker_name}" > /dev/null 2>&1 && stop_server > /dev/null 2>&1 && echo "Server has been created/updated" || echo "Error: Server couldn't be created/updated."
 }

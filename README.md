@@ -39,3 +39,8 @@ View the the container's logs:
 ```
 ./cryofall_docker.sh logs
 ```
+
+Update the server:
+```
+./cryofall_docker.sh update
+```

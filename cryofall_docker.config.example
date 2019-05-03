@@ -18,3 +18,7 @@ data_volume=${HOME}/cryofall/data
 command_ip=127.0.0.1
 ### The port socat will bind to. Only change this if you know what you're doing.
 command_port=7977
+### Change this if you don't want the container with your user ID
+host_user_id=$(id -u)
+### Change this if you don't want the container with your group ID
+host_user_gid=$(id -g)
